@@ -36,5 +36,4 @@ FORMS += \
         mainwindow.ui \
     choose.ui
 
-DISTFILES += \
-    record.png
+DISTFILES +=

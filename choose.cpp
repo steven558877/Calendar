@@ -6,13 +6,14 @@ choose::choose(QWidget *parent) :
     ui(new Ui::choose)
 {
     ui->setupUi(this);
+    ui->timeFrom->setTime(QTime::currentTime());
+    ui->timeTo->setDateTime(QDateTime::currentDateTime());
 }
 
 choose::~choose()
 {
     delete ui;
 }
-
 
 void choose::on_rec_clicked()
 {

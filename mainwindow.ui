@@ -24,7 +24,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="l1">
+   <widget class="QLabel" name="curDate">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -76,7 +76,7 @@
      </font>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="addBtn">
     <property name="geometry">
      <rect>
       <x>580</x>
@@ -89,7 +89,7 @@
      <string>add item</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="delBtn">
     <property name="geometry">
      <rect>
       <x>770</x>
@@ -102,12 +102,12 @@
      <string>delete item</string>
     </property>
    </widget>
-   <zorder>l1</zorder>
+   <zorder>curDate</zorder>
    <zorder>cal</zorder>
    <zorder>line</zorder>
    <zorder>list</zorder>
-   <zorder>pushButton</zorder>
-   <zorder>pushButton_2</zorder>
+   <zorder>addBtn</zorder>
+   <zorder>delBtn</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

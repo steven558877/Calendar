@@ -19,13 +19,13 @@ public:
 private slots:
     void on_cal_selectionChanged();
 
-    void on_pushButton_clicked();
+    void on_addBtn_clicked();
 
-    void on_pushButton_2_clicked();
-
-    void receiveData(QString data);
+    void on_delBtn_clicked();
 
     void on_list_doubleClicked(const QModelIndex &index);
+
+    void receiveData(QString data);
 
 private:
     Ui::MainWindow *ui;
