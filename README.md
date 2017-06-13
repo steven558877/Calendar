@@ -24,4 +24,6 @@
 > 4. At：提醒功能，可提前使用者預先訂定的計畫
 > 5. QT Designer：基於 C++ 語言專門用來開發 GUI 介面的程式
 
-
+目前
+---
+> ![](http://i.imgur.com/g6p2eeh.jpg)
