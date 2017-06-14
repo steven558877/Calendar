@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>888</width>
-    <height>851</height>
+    <width>393</width>
+    <height>508</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QPushButton" name="okBtn">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>740</y>
-      <width>170</width>
-      <height>46</height>
+      <x>290</x>
+      <y>450</y>
+      <width>80</width>
+      <height>25</height>
      </rect>
     </property>
     <property name="text">
@@ -30,20 +30,20 @@
    <widget class="QTextEdit" name="comment">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>460</y>
-      <width>771</width>
-      <height>251</height>
+      <x>40</x>
+      <y>250</y>
+      <width>331</width>
+      <height>192</height>
      </rect>
     </property>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>50</x>
+      <x>40</x>
       <y>50</y>
-      <width>131</width>
-      <height>401</height>
+      <width>101</width>
+      <height>191</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -94,10 +94,10 @@
    <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>190</x>
+      <x>160</x>
       <y>50</y>
-      <width>631</width>
-      <height>351</height>
+      <width>181</width>
+      <height>161</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
