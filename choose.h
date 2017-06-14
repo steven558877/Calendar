@@ -21,6 +21,9 @@ private slots:
 
     void on_okBtn_clicked();
 
+    void on_dirBtn_clicked();
+
+
 signals:
     void sendData(QString);
 

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui webenginewidgets widgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -26,14 +26,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    choose.cpp
+    choose.cpp \
+    direction.cpp
 
 HEADERS += \
         mainwindow.h \
-    choose.h
+    choose.h \
+    direction.h
 
 FORMS += \
         mainwindow.ui \
-    choose.ui
+    choose.ui \
+    direction.ui
 
 DISTFILES +=
