@@ -10,6 +10,7 @@ choose::choose(QWidget *parent) :
     ui(new Ui::choose)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Edit Item");
     ui->timeFrom->setTime(QTime::currentTime());
     ui->timeTo->setDateTime(QDateTime::currentDateTime());
 }

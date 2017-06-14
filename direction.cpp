@@ -7,6 +7,7 @@ direction::direction(QWidget *parent) :
     ui(new Ui::direction)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Google Navigation");
 }
 
 direction::~direction()

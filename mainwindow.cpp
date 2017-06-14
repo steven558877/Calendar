@@ -8,8 +8,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-    ui->curDate->setText(ui->cal->selectedDate().toString("yyyy年MM月dd日"));
+    this->setWindowTitle("Desktop Calendar Advanced Edition");
+    ui->curDate->setText(ui->cal->selectedDate().toString("yyyy 年 MM 月 dd 日"));
 }
 
 MainWindow::~MainWindow()
@@ -19,7 +19,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_cal_selectionChanged()
 {
-    ui->curDate->setText(ui->cal->selectedDate().toString("yyyy年MM月dd日"));
+    ui->curDate->setText(ui->cal->selectedDate().toString("yyyy 年 MM 月 dd 日"));
 }
 
 void MainWindow::on_addBtn_clicked() // add item
