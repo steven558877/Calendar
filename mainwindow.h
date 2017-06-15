@@ -27,9 +27,19 @@ private slots:
 
     void receiveData(QString data);
 
+    void on_test_clicked();
+
+    void get_title(QString);
+
+    void on_check_clicked();
+
+    void on_re_clicked();
+
 private:
     Ui::MainWindow *ui;
-    int index=1;
+    int index = 1;
+    QString title;
+    void createConnection();
 };
 
 #endif // MAINWINDOW_H

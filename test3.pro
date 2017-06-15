@@ -4,7 +4,11 @@
 #
 #-------------------------------------------------
 
+<<<<<<< HEAD
 QT       += core gui webenginewidgets widgets multimedia
+=======
+QT       += core gui webenginewidgets widgets sql
+>>>>>>> 02186bdab951f24185195890480b96633590e5bf
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 

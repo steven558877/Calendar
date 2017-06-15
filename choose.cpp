@@ -5,6 +5,7 @@
 
 #include <QApplication>
 #include <QWebEngineView>
+#include <QtSql>
 
 choose::choose(QWidget *parent) :
     QMainWindow(parent),
@@ -23,6 +24,17 @@ choose::~choose()
 
 void choose::on_okBtn_clicked()
 {
+    QSqlQuery query;
+    QString title = ui->title->text();
+    QString startTime = ui->timeFrom->time().toString();
+    QString endDateTime = ui->timeTo->dateTime().toString("yyyy-MM-dd hh:mm:ss");
+    QString curLocation = ui->LocationFrom->text();
+    QString des = ui->LocationTo->text();
+    QString note = ui->note->toPlainText();
+
+    QString ss = "INSERT INTO List values('" + title + "', '" + startTime + "', '" + endDateTime + "', '" + curLocation + "', '" + des + "', '" + note + "')";
+    query.exec(ss);
+
     emit sendData(ui->title->text());
     this->close();
 }
