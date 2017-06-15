@@ -13,8 +13,11 @@ choose::choose(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle("Edit Item");
-    ui->timeFrom->setTime(QTime::currentTime());
-    ui->timeTo->setDateTime(QDateTime::currentDateTime());
+    if(isAdd == true)
+    {
+        ui->timeFrom->setTime(QTime::currentTime());
+        ui->timeTo->setDateTime(QDateTime::currentDateTime());
+    }
 }
 
 choose::~choose()
@@ -31,12 +34,22 @@ void choose::on_okBtn_clicked()
     QString curLocation = ui->LocationFrom->text();
     QString des = ui->LocationTo->text();
     QString note = ui->note->toPlainText();
+    QString ss;
 
-    QString ss = "INSERT INTO List values('" + title + "', '" + startTime + "', '" + endDateTime + "', '" + curLocation + "', '" + des + "', '" + note + "')";
-    query.exec(ss);
+    if(isAdd) // insert into List
+    {
+        ss = "INSERT INTO List values('" + title + "', '" + startTime + "', '" + endDateTime + "', '" + curLocation + "', '" + des + "', '" + note + "')";
+        query.exec(ss);
 
-    emit sendData(ui->title->text());
-    this->close();
+        emit sendData(ui->title->text());
+        this->close();
+    }
+    else // update
+    {
+        ss = "update List set startTime = '" + startTime + "', endDateTime = '" + endDateTime + "', curLocation = '" + curLocation + "', destination = '" + des + "', note = '" + note + "' where title = '" + title + "'";
+        query.exec(ss);
+        this->close();
+    }
 }
 
 void choose::on_dirBtn_clicked()
@@ -52,4 +65,15 @@ void choose::on_recBtn_clicked()
 {
     AudioRecorder *recorder = new AudioRecorder;
     recorder->show();
+}
+
+void choose::setting(QString title, QTime startTime, QDateTime endDateTime, QString curLocation, QString destination, QString note)
+{
+    ui->title->setText(title);
+    ui->timeFrom->setTime(startTime);
+    ui->timeTo->setDateTime(endDateTime);
+    ui->LocationFrom->setText(curLocation);
+    ui->LocationTo->setText(destination);
+    ui->note->setText(note);
+    ui->title->setDisabled(true);
 }

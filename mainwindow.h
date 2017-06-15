@@ -29,8 +29,6 @@ private slots:
 
     void on_test_clicked();
 
-    void get_title(QString);
-
     void on_check_clicked();
 
     void on_re_clicked();
