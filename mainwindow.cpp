@@ -33,6 +33,12 @@ void MainWindow::on_addBtn_clicked() // add item
 void MainWindow::on_delBtn_clicked() // delete item
 {
     int i = ui->list->currentRow();
+
+    QSqlQuery query;
+    QString title = ui->list->item(i)->text();
+    QString ss = "delete from List where title = '" + title + "'";
+    query.exec(ss);
+
     delete ui->list->item(i);
 }
 
@@ -59,11 +65,9 @@ void MainWindow::createConnection()
 
     QSqlQuery query;
     query.exec("create table List (title TEXT, startTime TIME, endDateTime TIMESTAMP, curLocation TEXT, destination TEXT, note TEXT)");
-    //query.exec("insert into List values('hi', '14:00:30', '2014-01-02 23:00:00', 'Taoyuan', 'Hsinchu', 'HAPPY')");
 
     return;
 }
-
 
 void MainWindow::on_test_clicked()
 {
@@ -75,6 +79,7 @@ void MainWindow::on_check_clicked()
 {
     QSqlQuery query;
     query.exec("SELECT * FROM List");
+    qDebug() << "----check----";
     while(query.next())
     {
         qDebug() << query.value(0).toString();
@@ -83,6 +88,7 @@ void MainWindow::on_check_clicked()
         qDebug() << query.value(3).toString();
         qDebug() << query.value(4).toString();
         qDebug() << query.value(5).toString();
+        qDebug() << "----data finish----";
     }
 }
 
@@ -90,7 +96,6 @@ void MainWindow::get_title(QString input)
 {
     title = input;
 }
-
 
 void MainWindow::on_re_clicked()
 {
