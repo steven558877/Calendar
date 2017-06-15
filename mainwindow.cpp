@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include <QtSql/QtSql>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowTitle("Desktop Calendar Advanced Edition");
     ui->curDate->setText(ui->cal->selectedDate().toString("yyyy 年 MM 月 dd 日"));
+    createConnection();
 }
 
 MainWindow::~MainWindow()
@@ -46,7 +47,52 @@ void MainWindow::receiveData(QString data)
     index += 1;
 }
 
+void MainWindow::createConnection()
+{
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName(":data:");
+
+    if (!db.open()) {
+        qFatal("Cannot open database");
+        return;
+    }
+
+    QSqlQuery query;
+    query.exec("create table List (title TEXT, startTime TIME, endDateTime TIMESTAMP, curLocation TEXT, destination TEXT, note TEXT)");
+    //query.exec("insert into List values('hi', '14:00:30', '2014-01-02 23:00:00', 'Taoyuan', 'Hsinchu', 'HAPPY')");
+
+    return;
+}
 
 
+void MainWindow::on_test_clicked()
+{
+    QSqlQuery query;
+    query.exec("drop table List");
+}
+
+void MainWindow::on_check_clicked()
+{
+    QSqlQuery query;
+    query.exec("SELECT * FROM List");
+    while(query.next())
+    {
+        qDebug() << query.value(0).toString();
+        qDebug() << query.value(1).toString();
+        qDebug() << query.value(2).toString();
+        qDebug() << query.value(3).toString();
+        qDebug() << query.value(4).toString();
+        qDebug() << query.value(5).toString();
+    }
+}
+
+void MainWindow::get_title(QString input)
+{
+    title = input;
+}
 
 
+void MainWindow::on_re_clicked()
+{
+    createConnection();
+}
