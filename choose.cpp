@@ -1,6 +1,7 @@
 #include "choose.h"
 #include "ui_choose.h"
 #include "direction.h"
+#include "audiorecorder.h"
 
 #include <QApplication>
 #include <QWebEngineView>
@@ -20,11 +21,6 @@ choose::~choose()
     delete ui;
 }
 
-void choose::on_rec_clicked()
-{
-
-}
-
 void choose::on_okBtn_clicked()
 {
     emit sendData(ui->title->text());
@@ -38,4 +34,10 @@ void choose::on_dirBtn_clicked()
     dir->set_des(ui->LocationTo->text());
     dir->show_direction();
     dir->show();
+}
+
+void choose::on_recBtn_clicked()
+{
+    AudioRecorder *recorder = new AudioRecorder;
+    recorder->show();
 }

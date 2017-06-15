@@ -17,12 +17,11 @@ public:
 
 private slots:
 
-    void on_rec_clicked();
-
     void on_okBtn_clicked();
 
     void on_dirBtn_clicked();
 
+    void on_recBtn_clicked();
 
 signals:
     void sendData(QString);

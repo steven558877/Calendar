@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui webenginewidgets widgets
+QT       += core gui webenginewidgets widgets multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -27,16 +27,21 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     choose.cpp \
-    direction.cpp
+    direction.cpp \
+    audiorecorder.cpp \
+    qaudiolevel.cpp
 
 HEADERS += \
         mainwindow.h \
     choose.h \
-    direction.h
+    direction.h \
+    audiorecorder.h \
+    qaudiolevel.h
 
 FORMS += \
         mainwindow.ui \
     choose.ui \
-    direction.ui
+    direction.ui \
+    audiorecorder.ui
 
 DISTFILES +=
