@@ -154,8 +154,6 @@
        </item>
       </layout>
      </item>
-<<<<<<< HEAD
-=======
      <item row="1" column="0">
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="1" column="0">
@@ -170,7 +168,6 @@
        </item>
       </layout>
      </item>
->>>>>>> 02186bdab951f24185195890480b96633590e5bf
     </layout>
    </widget>
   </widget>
