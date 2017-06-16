@@ -16,6 +16,7 @@ public:
     ~choose();
     void setting(QString, QTime, QDateTime, QString, QString, QString);
     bool isAdd = true; // true -> add, false -> edit
+    void get_curDate(QString);
 
 private slots:
 
@@ -30,6 +31,7 @@ signals:
 
 private:
     Ui::choose *ui;
+    QString curDate;
 };
 
 #endif // CHOOSE_H

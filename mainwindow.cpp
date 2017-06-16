@@ -10,7 +10,22 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowTitle("Desktop Calendar Advanced Edition");
     ui->curDate->setText(ui->cal->selectedDate().toString("yyyy 年 MM 月 dd 日"));
+    curDate = ui->cal->selectedDate().toString("yyyy-MM-dd");
     createConnection();
+
+    //
+    QSqlQuery query;
+    QString ss = "SELECT * FROM List where startDate = '" + curDate + "'";
+    query.exec(ss);
+
+    ui->list->clear();
+    int i = 0;
+    while(query.next())
+    {
+        ui->list->insertItem(i, query.value(0).toString());
+        i += 1;
+    }
+
 }
 
 MainWindow::~MainWindow()
@@ -21,6 +36,20 @@ MainWindow::~MainWindow()
 void MainWindow::on_cal_selectionChanged()
 {
     ui->curDate->setText(ui->cal->selectedDate().toString("yyyy 年 MM 月 dd 日"));
+    curDate = ui->cal->selectedDate().toString("yyyy-MM-dd");
+
+    QSqlQuery query;
+    QString ss = "SELECT * FROM List where startDate = '" + curDate + "'";
+    query.exec(ss);
+
+    ui->list->clear();
+    int i = 0;
+    while(query.next())
+    {
+        ui->list->insertItem(i, query.value(0).toString());
+        i += 1;
+    }
+
 }
 
 void MainWindow::on_addBtn_clicked() // add item
@@ -28,6 +57,7 @@ void MainWindow::on_addBtn_clicked() // add item
     choose *ch = new choose;
     ch->isAdd = true; // add item
     connect(ch, SIGNAL(sendData(QString)), this, SLOT(receiveData(QString)));
+    ch->get_curDate(curDate);
     ch->show();
 }
 
@@ -56,11 +86,11 @@ void MainWindow::on_list_doubleClicked(const QModelIndex &index)
     query.first();
 
     QString title2 = query.value(0).toString();
-    QTime startTime = query.value(1).toTime();
-    QDateTime endDateTime = query.value(2).toDateTime();
-    QString curLocation = query.value(3).toString();
-    QString destination = query.value(4).toString();
-    QString note = query.value(5).toString();
+    QTime startTime = query.value(2).toTime();
+    QDateTime endDateTime = query.value(3).toDateTime();
+    QString curLocation = query.value(4).toString();
+    QString destination = query.value(5).toString();
+    QString note = query.value(6).toString();
 
     choose *ch = new choose;
     ch->setting(title2, startTime, endDateTime, curLocation, destination, note);
@@ -85,7 +115,9 @@ void MainWindow::createConnection()
     }
 
     QSqlQuery query;
-    query.exec("create table List (title TEXT, startTime TIME, endDateTime TIMESTAMP, curLocation TEXT, destination TEXT, note TEXT)");
+    //query.exec("create table List (title TEXT, startTime TIME, endDateTime TIMESTAMP, curLocation TEXT, destination TEXT, note TEXT)");
+    query.exec("create table List (title TEXT, startDate DATE, startTime TIME, endDateTime TIMESTAMP, curLocation TEXT, destination TEXT, note TEXT)");
+
 
     return;
 }
@@ -103,14 +135,16 @@ void MainWindow::on_check_clicked()
     qDebug() << "----check----";
     while(query.next())
     {
-        qDebug() << query.value(0).toString();
-        qDebug() << query.value(1).toString();
-        qDebug() << query.value(2).toString();
-        qDebug() << query.value(3).toString();
-        qDebug() << query.value(4).toString();
-        qDebug() << query.value(5).toString();
-        qDebug() << "----data finish----";
+        qDebug() << query.value(0).toString() <<
+                    query.value(1).toString() <<
+                    query.value(2).toString() <<
+                    query.value(3).toString() <<
+                    query.value(4).toString() <<
+                    query.value(5).toString() <<
+                    query.value(6).toString();
+
     }
+    qDebug() << "----data finish----";
 }
 
 void MainWindow::on_re_clicked()

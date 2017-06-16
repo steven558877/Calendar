@@ -38,7 +38,7 @@ void choose::on_okBtn_clicked()
 
     if(isAdd) // insert into List
     {
-        ss = "INSERT INTO List values('" + title + "', '" + startTime + "', '" + endDateTime + "', '" + curLocation + "', '" + des + "', '" + note + "')";
+        ss = "INSERT INTO List values('" + title + "', '" + curDate + "', '" + startTime + "', '" + endDateTime + "', '" + curLocation + "', '" + des + "', '" + note + "')";
         query.exec(ss);
 
         emit sendData(ui->title->text());
@@ -76,4 +76,9 @@ void choose::setting(QString title, QTime startTime, QDateTime endDateTime, QStr
     ui->LocationTo->setText(destination);
     ui->note->setText(note);
     ui->title->setDisabled(true);
+}
+
+void choose::get_curDate(QString input)
+{
+    curDate = input;
 }

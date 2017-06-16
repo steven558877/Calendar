@@ -25,7 +25,7 @@ private slots:
 
     void on_list_doubleClicked(const QModelIndex &index);
 
-    void receiveData(QString data);
+    void receiveData(QString);
 
     void on_test_clicked();
 
@@ -37,6 +37,7 @@ private:
     Ui::MainWindow *ui;
     int index = 1;
     QString title;
+    QString curDate;
     void createConnection();
 };
 
