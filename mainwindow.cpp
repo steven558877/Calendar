@@ -91,9 +91,10 @@ void MainWindow::on_list_doubleClicked(const QModelIndex &index)
     QString curLocation = query.value(4).toString();
     QString destination = query.value(5).toString();
     QString note = query.value(6).toString();
+    QString min = query.value(7).toString();
 
     choose *ch = new choose;
-    ch->setting(title2, startTime, endDateTime, curLocation, destination, note);
+    ch->setting(title2, startTime, endDateTime, curLocation, destination, note, min);
     ch->isAdd = false; // edit item
     ch->show();
 }
@@ -116,7 +117,7 @@ void MainWindow::createConnection()
 
     QSqlQuery query;
     //query.exec("create table List (title TEXT, startTime TIME, endDateTime TIMESTAMP, curLocation TEXT, destination TEXT, note TEXT)");
-    query.exec("create table List (title TEXT, startDate DATE, startTime TIME, endDateTime TIMESTAMP, curLocation TEXT, destination TEXT, note TEXT)");
+    query.exec("create table List (title TEXT, startDate DATE, startTime TIME, endDateTime TIMESTAMP, curLocation TEXT, destination TEXT, note TEXT, alarm TEXT)");
 
 
     return;
@@ -141,7 +142,8 @@ void MainWindow::on_check_clicked()
                     query.value(3).toString() <<
                     query.value(4).toString() <<
                     query.value(5).toString() <<
-                    query.value(6).toString();
+                    query.value(6).toString() <<
+                    query.value(7).toString();
 
     }
     qDebug() << "----data finish----";

@@ -6,6 +6,7 @@
 #include <QApplication>
 #include <QWebEngineView>
 #include <QtSql>
+#include <QTimer>
 
 choose::choose(QWidget *parent) :
     QMainWindow(parent),
@@ -35,10 +36,12 @@ void choose::on_okBtn_clicked()
     QString des = ui->LocationTo->text();
     QString note = ui->note->toPlainText();
     QString ss;
+    QString n = ui->num->text();
 
     if(isAdd) // insert into List
     {
-        ss = "INSERT INTO List values('" + title + "', '" + curDate + "', '" + startTime + "', '" + endDateTime + "', '" + curLocation + "', '" + des + "', '" + note + "')";
+        ss = "INSERT INTO List values('" + title + "', '" + curDate + "', '" + startTime + "', '" + endDateTime + "', '" + curLocation + "', '" + des + "', '" + note + "', '" + n + "')";
+        qDebug() << ss;
         query.exec(ss);
 
         emit sendData(ui->title->text());
@@ -46,7 +49,8 @@ void choose::on_okBtn_clicked()
     }
     else // update
     {
-        ss = "update List set startTime = '" + startTime + "', endDateTime = '" + endDateTime + "', curLocation = '" + curLocation + "', destination = '" + des + "', note = '" + note + "' where title = '" + title + "'";
+        ss = "update List set startTime = '" + startTime + "', endDateTime = '" + endDateTime + "', curLocation = '" + curLocation + "', destination = '" + des + "', note = '" + note + "', alarm = '" + n + "' where title = '" + title + "'";
+        qDebug() << ss;
         query.exec(ss);
         this->close();
     }
@@ -67,7 +71,7 @@ void choose::on_recBtn_clicked()
     recorder->show();
 }
 
-void choose::setting(QString title, QTime startTime, QDateTime endDateTime, QString curLocation, QString destination, QString note)
+void choose::setting(QString title, QTime startTime, QDateTime endDateTime, QString curLocation, QString destination, QString note, QString min)
 {
     ui->title->setText(title);
     ui->timeFrom->setTime(startTime);
@@ -76,6 +80,7 @@ void choose::setting(QString title, QTime startTime, QDateTime endDateTime, QStr
     ui->LocationTo->setText(destination);
     ui->note->setText(note);
     ui->title->setDisabled(true);
+    ui->num->setText(min);
 }
 
 void choose::get_curDate(QString input)
