@@ -77,7 +77,7 @@ AudioRecorder::AudioRecorder(QWidget *parent) :
             this, SLOT(onStateChanged(QMediaRecorder::State)));
     connect(audioRecorder, SIGNAL(error(QMediaRecorder::Error)), this,
             SLOT(displayErrorMessage()));
-    QString fileName = "/home/erer/Calendar/Record/123";
+    QString fileName = "/home/erer/Calendar/Record/123.mp3";
     audioRecorder->setOutputLocation(QUrl::fromLocalFile(fileName));
     outputLocationSet = true;
 }

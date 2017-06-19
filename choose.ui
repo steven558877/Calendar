@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>350</width>
-    <height>480</height>
+    <width>650</width>
+    <height>510</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QPushButton" name="okBtn">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>430</y>
+      <x>240</x>
+      <y>470</y>
       <width>80</width>
       <height>25</height>
      </rect>
@@ -33,12 +33,12 @@
       <x>20</x>
       <y>10</y>
       <width>310</width>
-      <height>411</height>
+      <height>451</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_4">
      <item row="1" column="0">
-      <layout class="QGridLayout" name="gridLayout_3">
+      <layout class="QGridLayout" name="gridLayout_5">
        <item row="1" column="0">
         <widget class="QLabel" name="label_5">
          <property name="text">
@@ -152,6 +152,16 @@
          </item>
         </layout>
        </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="lineEdit"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>Alarm</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
      <item row="1" column="0">
@@ -170,6 +180,9 @@
      </item>
     </layout>
    </widget>
+   <zorder>okBtn</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder></zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
