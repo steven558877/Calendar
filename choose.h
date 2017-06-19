@@ -14,7 +14,7 @@ class choose : public QMainWindow
 public:
     explicit choose(QWidget *parent = 0);
     ~choose();
-    void setting(QString, QTime, QDateTime, QString, QString, QString);
+    void setting(QString, QTime, QDateTime, QString, QString, QString, QString);
     bool isAdd = true; // true -> add, false -> edit
     void get_curDate(QString);
 

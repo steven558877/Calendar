@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>650</width>
-    <height>510</height>
+    <width>383</width>
+    <height>517</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -180,9 +180,8 @@
      </item>
     </layout>
    </widget>
-   <zorder>okBtn</zorder>
    <zorder>layoutWidget</zorder>
-   <zorder></zorder>
+   <zorder>okBtn</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
