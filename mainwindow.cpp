@@ -68,7 +68,8 @@ void MainWindow::on_delBtn_clicked() // delete item
     {
         QSqlQuery query;
         QString title = ui->list->item(i)->text();
-        QString ss = "delete from List where title = '" + title + "'";
+        QString ss = "delete from List where title = '" + title + "'and startDate = '" + curDate + "'";
+        qDebug() << ss;
         query.exec(ss);
 
         delete ui->list->item(i);
@@ -81,7 +82,7 @@ void MainWindow::on_list_doubleClicked(const QModelIndex &index)
     int i = ui->list->currentRow();
     QString title = ui->list->item(i)->text();
     QSqlQuery query;
-    QString ss = "SELECT * FROM List where title = '" + title + "'";
+    QString ss = "SELECT * FROM List where title = '" + title + "'and startDate = '" + curDate + "'";
     query.exec(ss);
     query.first();
 
