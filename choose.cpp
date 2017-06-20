@@ -46,7 +46,8 @@ void choose::on_okBtn_clicked()
     QString startTime_30 = ui->timeFrom->time().addSecs(-30 * 60).toString();
     QString endTime_30 = ui->timeTo->time().addSecs(30 * 60).toString();
     qDebug() << startTime_30 << endTime_30 << endTime;
-
+    QString startDateTime = curDate + " " + startTime;
+    QString startDateTime_30 = curDate + " " +startTime_30;
     tmp_Hour1= startTime[0];
     tmp_Hour2= startTime[1];
 
@@ -80,48 +81,77 @@ void choose::on_okBtn_clicked()
     alarmTime.replace(4,1,tmp_Min2);
 
 
-    ss = "select * from List where startDate = '" + curDate + "' and endTime between '" + startTime_30 + "' and '" + startTime + "'";
+    ss = "select * from List where startDate = '" + curDate + "' and endDateTime between '" + startDateTime_30 + "' and '" + startDateTime + "'";
     s2 = "select * from List where startDate = '" + curDate + "' and startTime between '" + endTime + "' and '" + endTime_30 + "'";
     query.exec(ss);
-    query.first();
+    bool exist1 = query.first();
     qDebug() <<  query.value(0);
     query.exec(s2);
-    query.first();
+    bool exist2 = query.first();
     qDebug() <<  query.value(0);
-
-
-    if(isAdd) // insert into List
+    if(exist1 || exist2)
     {
-        ss = "INSERT INTO List values('" + title + "', '" + curDate + "', '" + startTime + "', '" + endDateTime + "', '" + curLocation + "', '" + des + "', '" + note + "', '" + alarm + "')";
-        qDebug() << ss;
-        query.exec(ss);
+        switch(QMessageBox::warning(NULL,"Warning","時間與其他行程太過相近，是否確認要送出?",QMessageBox::Yes|QMessageBox::No))
+        {
+            case QMessageBox::Yes:
+                {
+                    if(isAdd) // insert into List
+                    {
+                        ss = "INSERT INTO List values('" + title + "', '" + curDate + "', '" + startTime + "', '" + endDateTime + "', '" + curLocation + "', '" + des + "', '" + note + "', '" + alarm + "')";
+                        qDebug() << ss;
+                        query.exec(ss);
 
-        emit sendData(ui->title->text());
-        //
-        QProcess *p1 = new QProcess();
-        p1->start("bash /home/erer/Calendar/set_alarm.sh "+ title + " " + curDate + " " + startTime + " " + endDateTime + " " + curLocation + " "+ des + " " + note + " " + alarmTime);
-        //
-        this->close();
+                        emit sendData(ui->title->text());
+                        //
+                        QProcess *p1 = new QProcess();
+                        p1->start("bash /home/erer/Calendar/set_alarm.sh "+ title + " " + curDate + " " + startTime + " " + endDateTime + " " + curLocation + " "+ des + " " + note + " " + alarmTime);
+                        //
+                        this->close();
+                    }
+                    else // update
+                    {
+                        ss = "update List set startTime = '" + startTime + "', endDateTime = '" + endDateTime + "', curLocation = '" + curLocation + "', destination = '" + des + "', note = '" + note + "', alarm = '" + alarm + "' where title = '" + title + "'";
+                        qDebug() << ss;
+                        query.exec(ss);
+                        this->close();
+                    }
+                    break;
+                }
+            case QMessageBox::No:
+                //按下放棄鍵後的處理
+                break;
+            default:
+                break;
+        }
     }
-    else // update
+    else
     {
-        ss = "update List set startTime = '" + startTime + "', endDateTime = '" + endDateTime + "', curLocation = '" + curLocation + "', destination = '" + des + "', note = '" + note + "', alarm = '" + alarm + "' where title = '" + title + "'";
-        qDebug() << ss;
-        query.exec(ss);
-        this->close();
+        if(isAdd) // insert into List
+        {
+            ss = "INSERT INTO List values('" + title + "', '" + curDate + "', '" + startTime + "', '" + endDateTime + "', '" + curLocation + "', '" + des + "', '" + note + "', '" + alarm + "')";
+            qDebug() << ss;
+            query.exec(ss);
+
+            emit sendData(ui->title->text());
+            //
+            QProcess *p1 = new QProcess();
+            p1->start("bash /home/erer/Calendar/set_alarm.sh "+ title + " " + curDate + " " + startTime + " " + endDateTime + " " + curLocation + " "+ des + " " + note + " " + alarmTime);
+            //
+            this->close();
+        }
+        else // update
+        {
+            ss = "update List set startTime = '" + startTime + "', endDateTime = '" + endDateTime + "', curLocation = '" + curLocation + "', destination = '" + des + "', note = '" + note + "', alarm = '" + alarm + "' where title = '" + title + "'";
+            qDebug() << ss;
+            query.exec(ss);
+            this->close();
+        }
     }
 
 
-    switch(QMessageBox::warning(NULL,"Warning","時間與其他行程太過相近，是否確認要送出?",QMessageBox::Yes|QMessageBox::No)){
-        case QMessageBox::Yes:
-            //按下儲存鍵後的處理
-            break;
-        case QMessageBox::No:
-            //按下放棄鍵後的處理
-            break;
-        default:
-            break;
-    }
+
+
+
 
 
 
