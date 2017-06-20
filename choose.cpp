@@ -21,6 +21,7 @@ choose::choose(QWidget *parent) :
         ui->timeFrom->setTime(QTime::currentTime());
         ui->timeTo->setDateTime(QDateTime::currentDateTime());
     }
+
 }
 
 choose::~choose()
@@ -48,6 +49,7 @@ void choose::on_okBtn_clicked()
     qDebug() << startTime_30 << endTime_30 << endTime;
     QString startDateTime = curDate + " " + startTime;
     QString startDateTime_30 = curDate + " " +startTime_30;
+    QString startTime_NoSec = ui->timeFrom->time().toString("hh:mm");
     tmp_Hour1= startTime[0];
     tmp_Hour2= startTime[1];
 
@@ -79,7 +81,7 @@ void choose::on_okBtn_clicked()
 
     alarmTime.replace(3,1,tmp_Min1);
     alarmTime.replace(4,1,tmp_Min2);
-
+    alarmTime.remove(5,3);
 
     ss = "select * from List where startDate = '" + curDate + "' and endDateTime between '" + startDateTime_30 + "' and '" + startDateTime + "'";
     s2 = "select * from List where startDate = '" + curDate + "' and startTime between '" + endTime + "' and '" + endTime_30 + "'";
@@ -104,8 +106,8 @@ void choose::on_okBtn_clicked()
                         emit sendData(ui->title->text());
                         //
                         QProcess *p1 = new QProcess();
-                        p1->start("bash /home/erer/Calendar/set_alarm.sh "+ title + " " + curDate + " " + startTime + " " + endDateTime + " " + curLocation + " "+ des + " " + note + " " + alarmTime);
-                        //
+                        QString cmd = "bash /home/erer/Calendar/set_alarm.sh "+ title + " " + curDate + " " + startTime + " \"" + endDateTime + "\" " + curLocation + " "+ des + " " + note + " " + alarmTime;
+                        p1->start(cmd);
                         this->close();
                     }
                     else // update
@@ -135,7 +137,8 @@ void choose::on_okBtn_clicked()
             emit sendData(ui->title->text());
             //
             QProcess *p1 = new QProcess();
-            p1->start("bash /home/erer/Calendar/set_alarm.sh "+ title + " " + curDate + " " + startTime + " " + endDateTime + " " + curLocation + " "+ des + " " + note + " " + alarmTime);
+            QString cmd = "bash /home/erer/Calendar/set_alarm.sh "+ title + " " + curDate + " " + startTime + " \"" + endDateTime + "\" " + curLocation + " "+ des + " " + note + " " + alarmTime;
+            p1->start(cmd);
             //
             this->close();
         }
