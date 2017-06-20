@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>383</width>
-    <height>517</height>
+    <width>474</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QPushButton" name="okBtn">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>470</y>
+      <x>230</x>
+      <y>430</y>
       <width>80</width>
       <height>25</height>
      </rect>
@@ -32,13 +32,13 @@
      <rect>
       <x>20</x>
       <y>10</y>
-      <width>310</width>
-      <height>451</height>
+      <width>322</width>
+      <height>411</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout_4">
-     <item row="1" column="0">
-      <layout class="QGridLayout" name="gridLayout_5">
+     <item row="2" column="0">
+      <layout class="QGridLayout" name="gridLayout_3">
        <item row="1" column="0">
         <widget class="QLabel" name="label_5">
          <property name="text">
@@ -53,6 +53,13 @@
      </item>
      <item row="0" column="0">
       <layout class="QGridLayout" name="gridLayout_2">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>Alarm</string>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="0">
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
@@ -99,7 +106,7 @@
          </item>
         </layout>
        </item>
-       <item row="0" column="1">
+       <item row="0" column="2">
         <layout class="QGridLayout" name="gridLayout">
          <item row="4" column="0">
           <widget class="QLineEdit" name="LocationTo"/>
@@ -152,19 +159,12 @@
          </item>
         </layout>
        </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="lineEdit"/>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_8">
-         <property name="text">
-          <string>Alarm</string>
-         </property>
-        </widget>
+       <item row="1" column="2">
+        <widget class="QLineEdit" name="alarm"/>
        </item>
       </layout>
      </item>
-     <item row="1" column="0">
+     <item row="2" column="0">
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="1" column="0">
         <widget class="QLabel" name="label_5">
@@ -173,15 +173,13 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="0">
+       <item row="3" column="0">
         <widget class="QTextEdit" name="note"/>
        </item>
       </layout>
      </item>
     </layout>
    </widget>
-   <zorder>layoutWidget</zorder>
-   <zorder>okBtn</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

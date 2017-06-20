@@ -43,7 +43,7 @@
 #include <QDir>
 #include <QFileDialog>
 #include <QMediaRecorder>
-
+#include <QProcess>
 #include "audiorecorder.h"
 #include "qaudiolevel.h"
 
@@ -86,6 +86,7 @@ AudioRecorder::~AudioRecorder()
 {
     delete audioRecorder;
     delete probe;
+
 }
 
 void AudioRecorder::updateProgress(qint64 duration)
@@ -158,11 +159,18 @@ void AudioRecorder::toggleRecord()
         QString container = "audio/mpeg, mpegversion=(int)1";
 
         audioRecorder->setEncodingSettings(settings, QVideoEncoderSettings(), container);
+        QString fileName = "/home/erer/Calendar/Record/" + filename +".mp3";
+        audioRecorder->setOutputLocation(QUrl::fromLocalFile(fileName));
         audioRecorder->record();
     }
     else {
         audioRecorder->stop();
+        QProcess * p1 = new QProcess();
+        p1->start("bash /home/erer/Calendar/file_conversion.sh " + filename);
+        p1->waitForFinished();
+        p1->kill();
     }
+
 }
 
 void AudioRecorder::togglePause()

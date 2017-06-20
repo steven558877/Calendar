@@ -91,10 +91,10 @@ void MainWindow::on_list_doubleClicked(const QModelIndex &index)
     QString curLocation = query.value(4).toString();
     QString destination = query.value(5).toString();
     QString note = query.value(6).toString();
-    QString min = query.value(7).toString();
+    QString alarm = query.value(7).toString();
 
     choose *ch = new choose;
-    ch->setting(title2, startTime, endDateTime, curLocation, destination, note, min);
+    ch->setting(title2, startTime, endDateTime, curLocation, destination, note, alarm);
     ch->isAdd = false; // edit item
     ch->show();
 }

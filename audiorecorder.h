@@ -61,6 +61,7 @@ class AudioRecorder : public QMainWindow
 public:
     AudioRecorder(QWidget *parent = 0);
     ~AudioRecorder();
+    void set_Name(QString title){filename = title;}
 
 public slots:
     void processBuffer(const QAudioBuffer&);
@@ -78,7 +79,7 @@ private:
     void clearAudioLevels();
 
     Ui::AudioRecorder *ui;
-
+    QString filename;
     QAudioRecorder *audioRecorder;
     QAudioProbe *probe;
     QList<QAudioLevel*> audioLevels;
