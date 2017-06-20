@@ -159,7 +159,7 @@ void AudioRecorder::toggleRecord()
         QString container = "audio/mpeg, mpegversion=(int)1";
 
         audioRecorder->setEncodingSettings(settings, QVideoEncoderSettings(), container);
-        QString fileName = "/home/erer/Calendar/Record/" + filename +".mp3";
+        QString fileName = "/home/terry/Calendar/Record/" + filename +".mp3";
         audioRecorder->setOutputLocation(QUrl::fromLocalFile(fileName));
         audioRecorder->record();
     }
