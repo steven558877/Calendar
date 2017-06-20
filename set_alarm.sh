@@ -1,2 +1,1 @@
-at 13:22 2017-06-20
-touch /home/erer/q.q
+echo "touch a.a" $1 $2 $3 $4 $5 $6 $7 | at $8 $2 
