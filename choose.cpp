@@ -8,6 +8,7 @@
 #include <QtSql>
 #include <QTimer>
 #include <QProcess>
+#include <QMessageBox>
 
 choose::choose(QWidget *parent) :
     QMainWindow(parent),
@@ -33,14 +34,18 @@ void choose::on_okBtn_clicked()
     QString title = ui->title->text();
     QString startTime = ui->timeFrom->time().toString();
     QString endDateTime = ui->timeTo->dateTime().toString("yyyy-MM-dd hh:mm:ss");
+    QString endTime = ui->timeTo->time().toString();
     QString curLocation = ui->LocationFrom->text();
     QString des = ui->LocationTo->text();
     QString note = ui->note->toPlainText();
-    QString ss;
+    QString ss, s2;
     QString alarm = ui->alarm->text();
     QString alarmTime = startTime;
     QString tmp_Hour1,tmp_Hour2;
     QString tmp_Min1,tmp_Min2;
+    QString startTime_30 = ui->timeFrom->time().addSecs(-30 * 60).toString();
+    QString endTime_30 = ui->timeTo->time().addSecs(30 * 60).toString();
+    qDebug() << startTime_30 << endTime_30 << endTime;
 
     tmp_Hour1= startTime[0];
     tmp_Hour2= startTime[1];
@@ -74,6 +79,17 @@ void choose::on_okBtn_clicked()
     alarmTime.replace(3,1,tmp_Min1);
     alarmTime.replace(4,1,tmp_Min2);
 
+
+    ss = "select * from List where startDate = '" + curDate + "' and endTime between '" + startTime_30 + "' and '" + startTime + "'";
+    s2 = "select * from List where startDate = '" + curDate + "' and startTime between '" + endTime + "' and '" + endTime_30 + "'";
+    query.exec(ss);
+    query.first();
+    qDebug() <<  query.value(0);
+    query.exec(s2);
+    query.first();
+    qDebug() <<  query.value(0);
+
+
     if(isAdd) // insert into List
     {
         ss = "INSERT INTO List values('" + title + "', '" + curDate + "', '" + startTime + "', '" + endDateTime + "', '" + curLocation + "', '" + des + "', '" + note + "', '" + alarm + "')";
@@ -94,6 +110,21 @@ void choose::on_okBtn_clicked()
         query.exec(ss);
         this->close();
     }
+
+
+    switch(QMessageBox::warning(NULL,"Warning","時間與其他行程太過相近，是否確認要送出?",QMessageBox::Yes|QMessageBox::No)){
+        case QMessageBox::Yes:
+            //按下儲存鍵後的處理
+            break;
+        case QMessageBox::No:
+            //按下放棄鍵後的處理
+            break;
+        default:
+            break;
+    }
+
+
+
 }
 
 void choose::on_dirBtn_clicked()
