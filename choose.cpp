@@ -115,6 +115,9 @@ void choose::on_okBtn_clicked()
                         ss = "update List set startTime = '" + startTime + "', endDateTime = '" + endDateTime + "', curLocation = '" + curLocation + "', destination = '" + des + "', note = '" + note + "', alarm = '" + alarm + "' where title = '" + title + "'";
                         qDebug() << ss;
                         query.exec(ss);
+                        QProcess *p1 = new QProcess();
+                        QString cmd = "bash /home/erer/Calendar/set_alarm.sh "+ title + " " + curDate + " " + startTime + " \"" + endDateTime + "\" " + curLocation + " "+ des + " " + note + " " + alarmTime;
+                        p1->start(cmd);
                         this->close();
                     }
                     break;
@@ -147,6 +150,9 @@ void choose::on_okBtn_clicked()
             ss = "update List set startTime = '" + startTime + "', endDateTime = '" + endDateTime + "', curLocation = '" + curLocation + "', destination = '" + des + "', note = '" + note + "', alarm = '" + alarm + "' where title = '" + title + "'";
             qDebug() << ss;
             query.exec(ss);
+            QProcess *p1 = new QProcess();
+            QString cmd = "bash /home/erer/Calendar/set_alarm.sh "+ title + " " + curDate + " " + startTime + " \"" + endDateTime + "\" " + curLocation + " "+ des + " " + note + " " + alarmTime;
+            p1->start(cmd);
             this->close();
         }
     }

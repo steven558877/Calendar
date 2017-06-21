@@ -96,6 +96,7 @@ void MainWindow::on_list_doubleClicked(const QModelIndex &index)
 
     choose *ch = new choose;
     ch->setting(title2, startTime, endDateTime, curLocation, destination, note, alarm);
+    ch->get_curDate(curDate);
     ch->isAdd = false; // edit item
     ch->show();
 }
