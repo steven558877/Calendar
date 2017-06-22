@@ -77,7 +77,8 @@ AudioRecorder::AudioRecorder(QWidget *parent) :
             this, SLOT(onStateChanged(QMediaRecorder::State)));
     connect(audioRecorder, SIGNAL(error(QMediaRecorder::Error)), this,
             SLOT(displayErrorMessage()));
-    QString fileName = "/home/erer/Calendar/Record/123.mp3";
+    QString user_name = qgetenv("USER");
+    QString fileName = "/home/" +user_name + "/Calendar/Record/123.mp3";
     audioRecorder->setOutputLocation(QUrl::fromLocalFile(fileName));
     outputLocationSet = true;
 }
@@ -167,7 +168,8 @@ void AudioRecorder::toggleRecord()
     else {
         audioRecorder->stop();
         QProcess * p1 = new QProcess();
-        p1->start("bash /home/erer/Calendar/file_conversion.sh " + filename);
+        QString user_name = qgetenv("USER");
+        p1->start("bash /home/"+user_name +"/Calendar/file_conversion.sh " + filename);
         p1->waitForFinished();
         p1->kill();
     }

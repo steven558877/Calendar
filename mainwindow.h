@@ -27,11 +27,11 @@ private slots:
 
     void receiveData(QString);
 
-    void on_test_clicked();
+    //void on_test_clicked();
 
-    void on_check_clicked();
+    //void on_check_clicked();
 
-    void on_re_clicked();
+    //void on_re_clicked();
 
 private:
     Ui::MainWindow *ui;

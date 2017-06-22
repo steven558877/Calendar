@@ -47,6 +47,7 @@ void MainWindow::play_rec()
 void MainWindow::on_pushButton_clicked()
 {
     QString user_name = qgetenv("USER");
+
     QSound::play(QString("/home/"+ user_name +"/Calendar/Record/" + argument[0]+ ".wav"));
 }
 

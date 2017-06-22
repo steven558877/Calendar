@@ -125,6 +125,7 @@ void MainWindow::createConnection()
     return;
 }
 
+/*
 void MainWindow::on_test_clicked()
 {
     QSqlQuery query;
@@ -155,3 +156,4 @@ void MainWindow::on_re_clicked()
 {
     createConnection();
 }
+*/

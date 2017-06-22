@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>644</width>
+    <width>541</width>
     <height>499</height>
    </rect>
   </property>
@@ -39,42 +39,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QWidget" name="">
-    <property name="geometry">
-     <rect>
-      <x>540</x>
-      <y>100</y>
-      <width>82</width>
-      <height>123</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout_3">
-     <item row="3" column="0">
-      <widget class="QPushButton" name="re">
-       <property name="text">
-        <string>re
-Connet</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QPushButton" name="check">
-       <property name="text">
-        <string>check</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QPushButton" name="test">
-       <property name="text">
-        <string>delete
-table</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -156,7 +121,7 @@ table</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>644</width>
+     <width>541</width>
      <height>28</height>
     </rect>
    </property>
