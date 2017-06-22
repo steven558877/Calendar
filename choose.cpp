@@ -106,7 +106,8 @@ void choose::on_okBtn_clicked()
                         emit sendData(ui->title->text());
                         //
                         QProcess *p1 = new QProcess();
-                        QString cmd = "bash /home/erer/Calendar/set_alarm.sh "+ title + " " + curDate + " " + startTime + " \"" + endDateTime + "\" " + curLocation + " "+ des + " " + note + " " + alarmTime;
+                        QString user_name = qgetenv("USER");
+                        QString cmd = "bash /home/"+  user_name +"/Calendar/set_alarm.sh "+ title + " " + curDate + " " + startTime + " \"" + endDateTime + "\" " + curLocation + " "+ des + " " + note + " " + alarmTime;
                         p1->start(cmd);
                         this->close();
                     }
@@ -116,7 +117,8 @@ void choose::on_okBtn_clicked()
                         qDebug() << ss;
                         query.exec(ss);
                         QProcess *p1 = new QProcess();
-                        QString cmd = "bash /home/erer/Calendar/set_alarm.sh "+ title + " " + curDate + " " + startTime + " \"" + endDateTime + "\" " + curLocation + " "+ des + " " + note + " " + alarmTime;
+                        QString user_name = qgetenv("USER");
+                        QString cmd = "bash /home/"+ user_name +"/Calendar/set_alarm.sh "+ title + " " + curDate + " " + startTime + " \"" + endDateTime + "\" " + curLocation + " "+ des + " " + note + " " + alarmTime;
                         p1->start(cmd);
                         this->close();
                     }
@@ -140,7 +142,8 @@ void choose::on_okBtn_clicked()
             emit sendData(ui->title->text());
             //
             QProcess *p1 = new QProcess();
-            QString cmd = "bash /home/erer/Calendar/set_alarm.sh "+ title + " " + curDate + " " + startTime + " \"" + endDateTime + "\" " + curLocation + " "+ des + " " + note + " " + alarmTime;
+            QString user_name = qgetenv("USER");
+            QString cmd = "bash /home/"+ user_name +"/Calendar/set_alarm.sh "+ title + " " + curDate + " " + startTime + " \"" + endDateTime + "\" " + curLocation + " "+ des + " " + note + " " + alarmTime;
             p1->start(cmd);
             //
             this->close();
@@ -151,7 +154,8 @@ void choose::on_okBtn_clicked()
             qDebug() << ss;
             query.exec(ss);
             QProcess *p1 = new QProcess();
-            QString cmd = "bash /home/erer/Calendar/set_alarm.sh "+ title + " " + curDate + " " + startTime + " \"" + endDateTime + "\" " + curLocation + " "+ des + " " + note + " " + alarmTime;
+            QString user_name = qgetenv("USER");
+            QString cmd = "bash /home/"+ user_name +"/Calendar/set_alarm.sh "+ title + " " + curDate + " " + startTime + " \"" + endDateTime + "\" " + curLocation + " "+ des + " " + note + " " + alarmTime;
             p1->start(cmd);
             this->close();
         }
